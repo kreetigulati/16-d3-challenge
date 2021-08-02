@@ -34,7 +34,7 @@ d3.csv("assets/data/data.csv").then(function(CensusData) {
   const xScale = d3.scaleLinear()
     .domain(d3.extent(CensusData, d => d.age))
     .range([0, width])
-    .nice(); //makes the intersection of axes crisp
+    .nice(); 
 
   const yScale = d3.scaleLinear()
     .domain([6,d3.max(CensusData, d => d.smokes)])
@@ -72,14 +72,14 @@ chartGroup.append("g")
   .attr("x",d=>xScale(d.age))
   .attr("y",d=>yScale(d.smokes))
   .classed(".stateText", true)
-//   .attr("font-family", "sans-serif")
+  .attr("font-family", "sans-serif")
   .attr("text-anchor", "middle")
   .attr("fill", "white")
   .attr("font-size", "10px")
   .style("font-weight", "bold")
   .attr("alignment-baseline", "central");
   
-  //============add axes titles=========
+  //axes titles and format
   chartGroup.append("text")
         .attr("transform", `translate(${width / 2}, ${height + margin.top + 13})`)
         .attr("text-anchor", "middle")
@@ -88,15 +88,15 @@ chartGroup.append("g")
         .style("font-weight", "bold")
         .text("Median Age");
 
-        chartGroup.append("text")
-        .attr("y", 0 - ((margin.left / 2) + 2))
-        .attr("x", 0 - (height / 2))
-        .attr("text-anchor", "middle")
-        .attr("font-size", "16px")
-        .attr("fill", "black")
-        .style("font-weight", "bold")
-        .attr("transform", "rotate(-90)")
-        .text("Smokers (%)");
+  chartGroup.append("text")
+  .attr("y", 0 - ((margin.left / 2) + 2))
+  .attr("x", 0 - (height / 2))
+  .attr("text-anchor", "middle")
+  .attr("font-size", "16px")
+  .attr("fill", "black")
+  .style("font-weight", "bold")
+  .attr("transform", "rotate(-90)")
+  .text("Smokers (%)");
 }).catch(function(error) {
   console.log(error);
 });
